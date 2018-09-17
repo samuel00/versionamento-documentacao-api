@@ -18,6 +18,12 @@ public class Pessoa {
 		this.cargo = cargo;
 	}
 
+	public Pessoa(Pessoa pessoa) {
+		this.id = pessoa.getId();
+		this.nome = pessoa.getNome();
+		this.cargo = pessoa.getCargo();
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -41,8 +47,5 @@ public class Pessoa {
 	public void setCargo(Cargo cargo) {
 		this.cargo = cargo;
 	}
-	
-	
-	
 
 }

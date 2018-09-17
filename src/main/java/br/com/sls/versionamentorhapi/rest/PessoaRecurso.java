@@ -20,8 +20,9 @@ public class PessoaRecurso {
 	private PessoaRepositorio repositorio;
 	
 	@GetMapping({"/v1/{id}", "/{id}"})
+	@Deprecated
 	public Pessoa findPessoa(@PathVariable("id") Long id) {
-		Pessoa pessoa = repositorio.findById(id);
+		Pessoa pessoa = new Pessoa(repositorio.findById(id));
 		return pessoa;
 	}
 	
