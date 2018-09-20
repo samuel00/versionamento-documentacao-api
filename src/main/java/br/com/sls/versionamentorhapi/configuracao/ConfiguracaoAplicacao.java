@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import br.com.sls.versionamentorhapi.enums.Cargo;
 import br.com.sls.versionamentorhapi.modelo.PessoaV2;
@@ -17,6 +18,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
+@PropertySource("classpath:swagger.properties")
 public class ConfiguracaoAplicacao {
 
 	@Bean

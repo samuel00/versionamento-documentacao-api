@@ -1,6 +1,7 @@
 package br.com.sls.versionamentorhapi.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +26,14 @@ public class PessoaRecurso {
 	
 	@GetMapping({"/v1/{id}", "/{id}"})
 	@Deprecated
-	@ApiOperation(value = "Retornar Pessoa Consultada", response = Pessoa.class)
+//	@ApiOperation(value = "Retornar Pessoa Consultada", response = Pessoa.class)
+	@ApiOperation(
+	        value = "${operation.value.pessoa}",
+	        notes = "${operation.note.find.pessoa}",
+	        produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponses({@ApiResponse(code=200,message= "OK", response=Pessoa.class),
 		@ApiResponse(code = 500, message = "Internal server error")})
-	public Pessoa findPessoa(@ApiParam(value="Identificador da pessoa") @PathVariable("id") Long id) {
+	public Pessoa findPessoa(@ApiParam(value="${param.pessoa.id}") @PathVariable("id") Long id) {
 		Pessoa pessoa = new Pessoa(repositorio.findById(id));
 		return pessoa;
 	}
