@@ -11,6 +11,10 @@ import br.com.sls.versionamentorhapi.modelo.PessoaV2;
 import br.com.sls.versionamentorhapi.modelo.PessoaV3;
 import br.com.sls.versionamentorhapi.respositorio.PessoaRepositorio;
 import br.com.sls.versionamentorhapi.util.PessoaUtil;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -21,7 +25,10 @@ public class PessoaRecurso {
 	
 	@GetMapping({"/v1/{id}", "/{id}"})
 	@Deprecated
-	public Pessoa findPessoa(@PathVariable("id") Long id) {
+	@ApiOperation(value = "Retornar Pessoa Consultada", response = Pessoa.class)
+	@ApiResponses({@ApiResponse(code=200,message= "OK", response=Pessoa.class),
+		@ApiResponse(code = 500, message = "Internal server error")})
+	public Pessoa findPessoa(@ApiParam(value="Identificador da pessoa") @PathVariable("id") Long id) {
 		Pessoa pessoa = new Pessoa(repositorio.findById(id));
 		return pessoa;
 	}
