@@ -58,5 +58,4 @@ public class ConfiguracaoAplicacao {
 				.paths(regex("/pessoa/v3.*")).build().apiInfo(new ApiInfoBuilder().version("3.0").title("Pessoa API")
 						.description(" Documentação Pessoa API v3").build());
 	}
-
 }

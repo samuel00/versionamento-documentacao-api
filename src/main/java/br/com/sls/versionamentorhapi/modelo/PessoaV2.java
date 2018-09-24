@@ -6,11 +6,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.sls.versionamentorhapi.enums.Cargo;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("Pessoa")
 public class PessoaV2 extends Pessoa{
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@ApiModelProperty(required = true)
 	private LocalDate dataNascimento;
 	
 	public PessoaV2(){}

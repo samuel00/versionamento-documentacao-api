@@ -1,13 +1,19 @@
 package br.com.sls.versionamentorhapi.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.sls.versionamentorhapi.enums.Cargo;
+import io.swagger.annotations.ApiModelProperty;
 
 public class Pessoa {
 	
+	@JsonIgnore
 	private Long id;
 	
+	@ApiModelProperty(required = true)
 	private String nome;
 	
+	@ApiModelProperty(required = true)
 	private Cargo cargo;
 	
 	public Pessoa() {}

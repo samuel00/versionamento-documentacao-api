@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +28,6 @@ public class PessoaRecurso {
 	
 	@GetMapping({"/v1/{id}", "/{id}"})
 	@Deprecated
-//	@ApiOperation(value = "Retornar Pessoa Consultada", response = Pessoa.class)
 	@ApiOperation(
 	        value = "${operation.value.pessoa}",
 	        notes = "${operation.note.find.pessoa}",
@@ -49,5 +50,10 @@ public class PessoaRecurso {
 		PessoaV3 pessoa = PessoaUtil.convertPessoa((PessoaV2) repositorio.findById(id));
 		return pessoa;
 	}
+	
+	@PostMapping({"/v3"})
+    public PessoaV3 add(@RequestBody PessoaV3 pessoa) {
+		return PessoaUtil.convertPessoa((PessoaV2) repositorio.add(pessoa));
+    }
 
 }
